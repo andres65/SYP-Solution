@@ -1,4 +1,5 @@
-﻿using SyP_Solution.Models;
+﻿using SyP_Solution.Metodos.Propietarios;
+using SyP_Solution.Models;
 using SyP_Solution.Models.Entity;
 using System;
 using System.Collections.Generic;
@@ -44,11 +45,13 @@ namespace SyP_Solution.Controllers
 
             return View();
         }
-        public ActionResult EditarPropietario(int? Id)
+        [HttpPost]
+        public ActionResult EditarPropietario(int id,string idU, string nombre, string apellido, string direccion, string email, string telefono)
         {
-            ViewBag.Message = "Your application description page.";
+            PropietariosNegocio nPropietario = new PropietariosNegocio();
+            bool editar = nPropietario.EditarPropietario(new PropietarioEntity {  intId = id, strNombre = nombre, strApellido = apellido, strDireccion = direccion, strCorreo = email, strTelefono = telefono, strNumeeroIdentificacion = idU }); 
 
-            return View();
+            return PartialView ("ViewPage1");
         }
 
 

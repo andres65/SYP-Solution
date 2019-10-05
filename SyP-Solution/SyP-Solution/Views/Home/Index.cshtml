@@ -2,8 +2,31 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
 
+<script>
+    $(document).ready(function () {
+        $("table tbody tr").click(function () {
+            var id = $(this).find("td:eq(0)").text();
+            var iden = $(this).find("td:eq(1)").text();
+            var nombre = $(this).find("td:eq(2)").text();
+            var apellido = $(this).find("td:eq(3)").text();
+            var direccion = $(this).find("td:eq(6)").text();
+            var correo = $(this).find("td:eq(4)").text();
+            var telefono = $(this).find("td:eq(5)").text();
 
+            $("#fidentificacion").val(iden.trim());
+            $("#fname").val(nombre.trim());
+            $("#fapellido").val(apellido.trim());
+            $("#fDireccion").val(direccion.trim());
+            $("#femail").val(correo.trim());
+            $("#fphone").val(telefono.trim());
+            $("#fid").val(id.trim());     
+
+        });
+    });
+   
+</script>
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -12,14 +35,65 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title">Editar Propietario</h4>
             </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
+                <form class="form-horizontal" action="/Home/EditarPropietario" method="post">
+                    <fieldset>
+                        <input id="fid" name="id" type="text" hidden>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-user"></i></span>
+                            <div class="col-md-8">
+                                <input id="fidentificacion" name="idU" type="text" placeholder="Identificación" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-user"></i></span>
+                            <div class="col-md-8">
+                                <input id="fname" name="nombre" type="text" placeholder="Nombre" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-user"></i></span>
+                            <div class="col-md-8">
+                                <input id="fapellido" name="apellido" type="text" placeholder="Apellido" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-road"></i></span>
+                            <div class="col-md-8">
+                                <input id="fDireccion" name="direccion" type="text" placeholder="Dirección" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <div class="col-md-8">
+                                <input id="femail" name="email" type="text" placeholder="Correo" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-phone"></i></span>
+                            <div class="col-md-8">
+                                <input id="fphone" name="telefono" type="text" placeholder="Telefono" class="form-control">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+
         </div>
 
     </div>
@@ -43,36 +117,48 @@
                 Apellido
             </th>
             <th>
+                Correo
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
                 Dirección
             </th>
 
 
             <th></th>
         </tr>
-        @foreach (var item in Model)
+        @foreach (var item in Model )
         {
-            <tr>
-                <td hidden>
-                    @Html.DisplayFor(modelItem => item.intId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.strNumeeroIdentificacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.strNombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.strApellido)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.strDireccion)
-                </td>
-                <td>
-                    <button class="btn btn-default" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></button> |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
+        <tr>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.intId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strNumeeroIdentificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strApellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strCorreo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strTelefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.strDireccion)
+            </td>
+            <td>
+                <button class="btn btn-default" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></button> |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
 
         }
     </table>

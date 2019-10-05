@@ -15,5 +15,12 @@ namespace SyP_Solution.Metodos.Propietarios
             bool insertar = pData.AgegarPropietario(propietario);          
             return insertar;
         }
+
+        public bool EditarPropietario(PropietarioEntity propietario)
+        {
+            PropietarioData pData = new PropietarioData();
+            bool editar = pData.EditarPropietario (propietario);
+            return editar;
+        }
     }
 }
