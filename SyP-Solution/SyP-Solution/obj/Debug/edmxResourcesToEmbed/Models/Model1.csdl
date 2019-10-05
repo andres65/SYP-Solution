@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PRUEBA1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="DBPruebaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="CLASEVEHICULO">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="VEHICULO" Relationship="Self.FK_VEHICULO_CLASEVEHICULO" FromRole="CLASEVEHICULO" ToRole="VEHICULO" />
   </EntityType>
@@ -12,10 +12,10 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NUMERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="FECHA" Type="DateTime" Precision="3" />
-    <Property Name="ID_VEHICULO" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ID_VEHICULO" Type="Int32" />
     <Property Name="OBSERVACIONES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="VEHICULO" Relationship="Self.FK_FACTURA_VEHICULO" FromRole="FACTURA" ToRole="VEHICULO" />
     <NavigationProperty Name="TRAMITE" Relationship="Self.FACTURA_TRAMITE" FromRole="FACTURA" ToRole="TRAMITE" />
@@ -24,9 +24,9 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ID_MARCA" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ID_MARCA" Type="Int32" />
     <NavigationProperty Name="MARCA" Relationship="Self.FK_LINEA_MARCA" FromRole="LINEA" ToRole="MARCA" />
     <NavigationProperty Name="VEHICULO" Relationship="Self.FK_VEHICULO_LINEA" FromRole="LINEA" ToRole="VEHICULO" />
   </EntityType>
@@ -34,7 +34,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="LINEA" Relationship="Self.FK_LINEA_MARCA" FromRole="MARCA" ToRole="LINEA" />
   </EntityType>
@@ -42,7 +42,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NUMEROIDENTIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="NOMBRES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="APELLIDOS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -55,7 +55,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="VEHICULO" Relationship="Self.FK_VEHICULO_TIPOSERVICIO" FromRole="TIPOSERVICIO" ToRole="VEHICULO" />
   </EntityType>
@@ -63,7 +63,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="VALOR" Type="Double" />
     <NavigationProperty Name="FACTURA" Relationship="Self.FACTURA_TRAMITE" FromRole="TRAMITE" ToRole="FACTURA" />
@@ -72,14 +72,14 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PLACA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="ID_LINEA" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ID_LINEA" Type="Int32" />
     <Property Name="MODELO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="NUMEROMOTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="COLOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ID_CLASE" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="ID_TIPOSERVICIO" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ID_CLASE" Type="Int32" />
+    <Property Name="ID_TIPOSERVICIO" Type="Int32" />
     <NavigationProperty Name="CLASEVEHICULO" Relationship="Self.FK_VEHICULO_CLASEVEHICULO" FromRole="VEHICULO" ToRole="CLASEVEHICULO" />
     <NavigationProperty Name="FACTURA" Relationship="Self.FK_FACTURA_VEHICULO" FromRole="VEHICULO" ToRole="FACTURA" />
     <NavigationProperty Name="LINEA" Relationship="Self.FK_VEHICULO_LINEA" FromRole="VEHICULO" ToRole="LINEA" />
@@ -154,7 +154,7 @@
     <End Role="PROPIETARIO" Type="Self.PROPIETARIO" Multiplicity="*" />
     <End Role="VEHICULO" Type="Self.VEHICULO" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="PRUEBA1Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DBPruebaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CLASEVEHICULO" EntityType="Self.CLASEVEHICULO" />
     <EntitySet Name="FACTURA" EntityType="Self.FACTURA" />
     <EntitySet Name="LINEA" EntityType="Self.LINEA" />

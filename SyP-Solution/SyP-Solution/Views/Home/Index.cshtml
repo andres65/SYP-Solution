@@ -1,4 +1,79 @@
-﻿@{
+﻿@model List<SyP_Solution.Models.Entity.PropietarioEntity>
+@{
     ViewBag.Title = "Home Page";
 }
 
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br />
+<button>@Html.ActionLink("Agregar Propietario", "Index", "CrearPropietario")</button>
+<div>
+    <table class="table">
+        <tr>
+            <th hidden>
+                id
+            </th>
+            <th>
+                Identificación
+            </th>
+            <th>
+                Nombre Propietario
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th>
+                Dirección
+            </th>
+
+
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.intId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.strNumeeroIdentificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.strNombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.strApellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.strDireccion)
+                </td>
+                <td>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></button> |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>

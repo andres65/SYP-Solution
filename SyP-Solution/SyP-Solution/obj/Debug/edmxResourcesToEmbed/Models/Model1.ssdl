@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PRUEBA1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="DBPruebaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="CLASEVEHICULO">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="FACTURA">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NUMERO" Type="varchar" MaxLength="50" />
     <Property Name="FECHA" Type="datetime" />
-    <Property Name="ID_VEHICULO" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="ID_VEHICULO" Type="int" />
     <Property Name="OBSERVACIONES" Type="text" />
   </EntityType>
   <EntityType Name="FACTURA_TRAMITE">
@@ -22,29 +22,29 @@
       <PropertyRef Name="ID_FACTURA" />
       <PropertyRef Name="ID_TRAMITE" />
     </Key>
-    <Property Name="ID_FACTURA" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="ID_TRAMITE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID_FACTURA" Type="int" Nullable="false" />
+    <Property Name="ID_TRAMITE" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="LINEA">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
-    <Property Name="ID_MARCA" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="ID_MARCA" Type="int" />
   </EntityType>
   <EntityType Name="MARCA">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="PROPIETARIO">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NUMEROIDENTIFICACION" Type="varchar" MaxLength="50" />
     <Property Name="NOMBRES" Type="varchar" MaxLength="50" />
     <Property Name="APELLIDOS" Type="varchar" MaxLength="50" />
@@ -57,21 +57,21 @@
       <PropertyRef Name="ID_PROPIETARIO" />
       <PropertyRef Name="ID_VEHICULO" />
     </Key>
-    <Property Name="ID_PROPIETARIO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="ID_VEHICULO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID_PROPIETARIO" Type="int" Nullable="false" />
+    <Property Name="ID_VEHICULO" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TIPOSERVICIO">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="TRAMITE">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="100" />
     <Property Name="VALOR" Type="float" />
   </EntityType>
@@ -79,14 +79,14 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PLACA" Type="varchar" MaxLength="10" />
-    <Property Name="ID_LINEA" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="ID_LINEA" Type="int" />
     <Property Name="MODELO" Type="varchar" MaxLength="10" />
     <Property Name="NUMEROMOTOR" Type="varchar" MaxLength="50" />
     <Property Name="COLOR" Type="varchar" MaxLength="50" />
-    <Property Name="ID_CLASE" Type="numeric" Precision="18" Scale="0" />
-    <Property Name="ID_TIPOSERVICIO" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="ID_CLASE" Type="int" />
+    <Property Name="ID_TIPOSERVICIO" Type="int" />
   </EntityType>
   <Association Name="FK_FACTURA_TRAMITE_FACTURA">
     <End Role="FACTURA" Type="Self.FACTURA" Multiplicity="1" />
@@ -196,7 +196,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="PRUEBA1ModelStoreContainer">
+  <EntityContainer Name="DBPruebaModelStoreContainer">
     <EntitySet Name="CLASEVEHICULO" EntityType="Self.CLASEVEHICULO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FACTURA" EntityType="Self.FACTURA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FACTURA_TRAMITE" EntityType="Self.FACTURA_TRAMITE" Schema="dbo" store:Type="Tables" />

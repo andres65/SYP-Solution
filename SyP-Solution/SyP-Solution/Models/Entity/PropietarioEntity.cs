@@ -8,7 +8,7 @@ namespace SyP_Solution.Models.Entity
     public class PropietarioEntity
     {
         public int intId { get; set; }
-        public int intNumeeroIdentificacion { get; set; }
+        public string  strNumeeroIdentificacion { get; set; }
         public string  strNombre { get; set; }
         public string  strApellido { get; set; }
         public string  strDireccion { get; set; }
