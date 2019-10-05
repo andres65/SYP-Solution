@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PRUEBA1ModelStoreContainer" CdmEntityContainer="PRUEBA1Entities">
+    <EntitySetMapping Name="CLASEVEHICULO">
+      <EntityTypeMapping TypeName="PRUEBA1Model.CLASEVEHICULO">
+        <MappingFragment StoreEntitySet="CLASEVEHICULO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FACTURA">
+      <EntityTypeMapping TypeName="PRUEBA1Model.FACTURA">
+        <MappingFragment StoreEntitySet="FACTURA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="ID_VEHICULO" ColumnName="ID_VEHICULO" />
+          <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LINEA">
+      <EntityTypeMapping TypeName="PRUEBA1Model.LINEA">
+        <MappingFragment StoreEntitySet="LINEA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ID_MARCA" ColumnName="ID_MARCA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MARCA">
+      <EntityTypeMapping TypeName="PRUEBA1Model.MARCA">
+        <MappingFragment StoreEntitySet="MARCA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROPIETARIO">
+      <EntityTypeMapping TypeName="PRUEBA1Model.PROPIETARIO">
+        <MappingFragment StoreEntitySet="PROPIETARIO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NUMEROIDENTIFICACION" ColumnName="NUMEROIDENTIFICACION" />
+          <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+          <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="CORREOELECTRONICO" ColumnName="CORREOELECTRONICO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPOSERVICIO">
+      <EntityTypeMapping TypeName="PRUEBA1Model.TIPOSERVICIO">
+        <MappingFragment StoreEntitySet="TIPOSERVICIO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRAMITE">
+      <EntityTypeMapping TypeName="PRUEBA1Model.TRAMITE">
+        <MappingFragment StoreEntitySet="TRAMITE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VEHICULO">
+      <EntityTypeMapping TypeName="PRUEBA1Model.VEHICULO">
+        <MappingFragment StoreEntitySet="VEHICULO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PLACA" ColumnName="PLACA" />
+          <ScalarProperty Name="ID_LINEA" ColumnName="ID_LINEA" />
+          <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+          <ScalarProperty Name="NUMEROMOTOR" ColumnName="NUMEROMOTOR" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="ID_CLASE" ColumnName="ID_CLASE" />
+          <ScalarProperty Name="ID_TIPOSERVICIO" ColumnName="ID_TIPOSERVICIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FACTURA_TRAMITE" TypeName="PRUEBA1Model.FACTURA_TRAMITE" StoreEntitySet="FACTURA_TRAMITE">
+      <EndProperty Name="FACTURA">
+        <ScalarProperty Name="ID" ColumnName="ID_FACTURA" />
+      </EndProperty>
+      <EndProperty Name="TRAMITE">
+        <ScalarProperty Name="ID" ColumnName="ID_TRAMITE" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PROPIETARIO_VEHICULO" TypeName="PRUEBA1Model.PROPIETARIO_VEHICULO" StoreEntitySet="PROPIETARIO_VEHICULO">
+      <EndProperty Name="PROPIETARIO">
+        <ScalarProperty Name="ID" ColumnName="ID_PROPIETARIO" />
+      </EndProperty>
+      <EndProperty Name="VEHICULO">
+        <ScalarProperty Name="ID" ColumnName="ID_VEHICULO" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
