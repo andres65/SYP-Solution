@@ -1,7 +1,215 @@
-﻿@{
+﻿@model List<SyP_Solution.Models.Entity.VehiculoEntity>
+@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
 
-<p>Use this area to provide additional information.</p>
+<script>
+    $(document).ready(function () {
+        $("table tbody tr").click(function () {
+            var id = $(this).find("td:eq(0)").text();
+            var placa = $(this).find("td:eq(1)").text();
+            var idLinea = $(this).find("td:eq(2)").text();
+            var modelo = $(this).find("td:eq(3)").text();
+            var NumeroMotor = $(this).find("td:eq(4)").text();
+            var color = $(this).find("td:eq(5)").text();
+            var idClase = $(this).find("td:eq(6)").text();
+            var idTipoServicio = $(this).find("td:eq(7)").text();
+
+            $("#fid").val(id.trim());
+            $("#fplaca").val(placa.trim());
+            $("#flinea").val(idLinea.trim());
+            $("#fmodelo").val(modelo.trim());
+            $("#fnummotor").val(NumeroMotor.trim());
+            $("#fcolor").val(color.trim());
+            $("#fclase").val(idClase.trim());
+            $("#ftiposervicio").val(idTipoServicio.trim());
+            $("#fid2").val(id.trim());
+
+        });
+    });
+
+</script>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="ModalEditar" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Editar Vehiculo</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal" action="/Home/EditarVehiculo" method="post">
+                    <fieldset>
+
+                        <input id="fid" name="id" type="text" hidden>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-unchecked"></i></span>
+                            <div class="col-md-8">
+                                <label>Número de placa</label>
+                                <input id="fplaca" name="placa" type="text" placeholder="placa" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-th-list"></i></span>
+                            <div class="col-md-8">
+                                <label>Id Linea (1-6)</label>
+                                <input id="flinea" name="idLinea" type="number" placeholder="1" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <div class="col-md-8">
+                                <label>Modelo</label>
+                                <input id="fmodelo" name="modelo" type="number" placeholder="2019" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-cog"></i></span>
+                            <div class="col-md-8">
+                                <label>Número del Motor</label>
+                                <input id="fnummotor" name="NumeroMotor" type="text" placeholder="JAC123" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-tint"></i></span>
+                            <div class="col-md-8">
+                                <label>Color</label>
+                                <input id="fcolor" name="color" type="text" placeholder="Azul-Rojo-Amarrillo" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-list"></i></span>
+                            <div class="col-md-8">
+                                <label>Id Clase (1-4)</label>
+                                <input id="fclase" name="idClase" type="number" placeholder="1" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-list"></i></span>
+                            <div class="col-md-8">
+                                <label>Id Tipo servicio (1-2)</label>
+                                <input id="ftiposervicio" name="idTipoServicio" type="number" placeholder="1.PUBLICO - 2. PARTICULAR" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Editar</button>
+                                <button type="button" class="btn btn-warning btn-lg" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Eliminar-->
+<div class="modal fade" id="ModalEliminar" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Elimiar Propietario</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/Home/EliminarVehiculo" method="post">
+                    <fieldset>
+
+                        <h3>Desaea eliminar el Vehiculo con ID</h3>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-user"></i></span>
+                            <div class="col-md-8">
+                                <input id="fid2" name="id" type="number" placeholder="ID" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-danger btn-lg">Eliminar</button>
+                                <button type="button" class="btn btn-warning btn-lg" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!--End ModalEliminar-->
+
+<br /><br />
+
+<p> <button type="button" class="btn btn-default btn-lg">@Html.ActionLink("Agregar Vehiculos", "Index", "CrearVehiculo")</button></p>
+<br />
+
+<div>
+    <h2>Lista Vehiculos</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>PLACA</th>
+                <th hidden>LINEA </th>
+                <th>MODELO </th>
+                <th> NUMERO MOTOR</th>
+                <th>COLOR</th>
+                <th hidden> ID_CLASE</th>
+                <th hidden> ID_TIPO SERVICIO</th>
+                <th>OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.intId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.strPlaca)
+                    </td>
+                    <td hidden>
+                        @Html.DisplayFor(model => item.intIdLinea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.strModelo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.strNumeroMotor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.strColor)
+                    </td>
+                    <td hidden>
+                        @Html.DisplayFor(model => item.intIdClase)
+                    </td>
+                    <td hidden>
+                        @Html.DisplayFor(model => item.intIdTipoServicio)
+                    </td>
+
+                    <td>
+                        <button class="btn btn-info" data-toggle="modal" data-target="#ModalEditar"><span class="glyphicon glyphicon-pencil"></span></button> |
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminar"><span class="glyphicon glyphicon-remove"></span></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

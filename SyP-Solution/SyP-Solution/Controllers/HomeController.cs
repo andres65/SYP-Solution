@@ -37,22 +37,66 @@ namespace SyP_Solution.Controllers
             return View(lstProp);
         }
 
-        
+        [HttpPost]
+        public ActionResult EditarPropietario(int id, string idU, string nombre, string apellido, string direccion, string email, string telefono)
+        {
+            PropietariosNegocio nPropietario = new PropietariosNegocio();
+            bool editar = nPropietario.EditarPropietario(new PropietarioEntity { intId = id, strNombre = nombre, strApellido = apellido, strDireccion = direccion, strCorreo = email, strTelefono = telefono, strNumeeroIdentificacion = idU });
+
+            return PartialView("MensajeExito");
+        }
+
+        [HttpPost]
+        public ActionResult EliminarPropietario(int id)
+        {
+            PropietariosNegocio nPropietario = new PropietariosNegocio();
+            bool eliminar = nPropietario.EliminarPropietario(new PropietarioEntity { intId = id });
+            return PartialView("MensajeExito");
+        }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            List<VehiculoEntity> lstProp = new List<VehiculoEntity>();
 
-            return View();
+            using (DBPruebaEntities db = new DBPruebaEntities())
+            {
+                lstProp = (from p in db.VEHICULO
+                           select new SyP_Solution.Models.Entity.VehiculoEntity
+                           {
+
+                               intId = p.ID,
+                               strPlaca = p.PLACA,
+                               intIdLinea = p.ID_LINEA,
+                               strModelo = p.MODELO,
+                               strNumeroMotor = p.NUMEROMOTOR,
+                               strColor = p.COLOR,
+                               intIdClase = p.ID_CLASE,
+                               intIdTipoServicio = p.ID_TIPOSERVICIO
+
+                           }
+                    ).ToList();
+            }
+
+            return View(lstProp);
         }
+
         [HttpPost]
-        public ActionResult EditarPropietario(int id,string idU, string nombre, string apellido, string direccion, string email, string telefono)
+        public ActionResult EditarVehiculo(int id, string placa, int idLinea, string modelo, string NumeroMotor, string color, int idClase, int idTipoServicio)
         {
-            PropietariosNegocio nPropietario = new PropietariosNegocio();
-            bool editar = nPropietario.EditarPropietario(new PropietarioEntity {  intId = id, strNombre = nombre, strApellido = apellido, strDireccion = direccion, strCorreo = email, strTelefono = telefono, strNumeeroIdentificacion = idU }); 
-
-            return PartialView ("ViewPage1");
+            VehiculosNegocio nVehiculo = new VehiculosNegocio();
+            //PropietariosNegocio nPropietario = new PropietariosNegocio();
+            bool editar = nVehiculo.EditarVehiculo(new VehiculoEntity { intId = id, strPlaca = placa, intIdLinea = idLinea, strModelo = modelo, strNumeroMotor = NumeroMotor, strColor = color, intIdClase = idClase, intIdTipoServicio = idTipoServicio });
+            return PartialView("MensajeExito");
         }
+
+        [HttpPost]
+        public ActionResult EliminarVehiculo(int id)
+        {
+            VehiculosNegocio nVehiculo = new VehiculosNegocio();
+            bool eliminar = nVehiculo.EliminarVehiculo(new VehiculoEntity { intId = id });
+            return PartialView("MensajeExito");
+        }
+
 
 
         public ActionResult Contact()

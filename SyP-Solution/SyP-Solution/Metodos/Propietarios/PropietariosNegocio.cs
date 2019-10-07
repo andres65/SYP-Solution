@@ -22,5 +22,12 @@ namespace SyP_Solution.Metodos.Propietarios
             bool editar = pData.EditarPropietario (propietario);
             return editar;
         }
+
+        public bool EliminarPropietario(PropietarioEntity propietario)
+        {
+            PropietarioData pData = new PropietarioData();
+            bool eliminar = pData.EliminarPropietario(propietario);
+            return eliminar;
+        }
     }
 }

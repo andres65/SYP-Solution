@@ -38,12 +38,12 @@ namespace SyP_Solution.Data.Propietario
                         cmd.Parameters["@strDireccion"].Value = propietario.strDireccion;
                         cmd.Parameters["@strTelefono"].Value = propietario.strTelefono;
                         cmd.Parameters["@strCorreo"].Value = propietario.strCorreo;
-                        //Abres la conexión 
+                        //Abrimos la conexión 
                         con.Open();
                         //Ejecutas el procedimiento, y guardas en una variable tipo int el número de lineas afectadas en las tablas que se insertaron
                         //(ExecuteNonQuery devuelve un valor entero, en éste caso, devolverá el número de filas afectadas después del insert, si es mayor a > 0, entonces el insert se hizo con éxito)
                         int numero = cmd.ExecuteNonQuery();
-
+                        //Cerramos la conexión
                         con.Close();
                         agregar = true;
                     }
@@ -60,6 +60,8 @@ namespace SyP_Solution.Data.Propietario
             return agregar;
            
         }
+
+     
 
         public bool EditarPropietario(PropietarioEntity propietario)
         {
@@ -88,12 +90,12 @@ namespace SyP_Solution.Data.Propietario
                         cmd.Parameters["@strDireccion"].Value = propietario.strDireccion;
                         cmd.Parameters["@strTelefono"].Value = propietario.strTelefono;
                         cmd.Parameters["@strCorreo"].Value = propietario.strCorreo;
-                        //Abres la conexión 
+                        //Abrimos la conexión 
                         con.Open();
                         //Ejecutas el procedimiento, y guardas en una variable tipo int el número de lineas afectadas en las tablas que se insertaron
                         //(ExecuteNonQuery devuelve un valor entero, en éste caso, devolverá el número de filas afectadas después del insert, si es mayor a > 0, entonces el insert se hizo con éxito)
                         int numero = cmd.ExecuteNonQuery();
-
+                        //cerramos la conexión
                         con.Close();
                         Editar = true;
                     }
@@ -109,6 +111,40 @@ namespace SyP_Solution.Data.Propietario
             }
             return Editar;
 
+        }
+
+        public bool EliminarPropietario(PropietarioEntity propietario)
+        {
+            bool Eliminar = false;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(cadenaC.Database.Connection.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SP_EliminarPropietario", con))
+                    {
+                        //Le indicas al SqlCommando que lo que va a ejecutar es Tipo Procedimiento Almacenado
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //Aquí agregas los parámetros de tu procedimiento
+                        cmd.Parameters.Add("@intId", SqlDbType.Int);
+                        //asignamos el valor obtenido de los parametros
+                        cmd.Parameters["@intId"].Value = propietario.intId;
+                        //Abrimos la conexión 
+                        con.Open();
+                        int numero = cmd.ExecuteNonQuery();
+                        //cerramos la conexión
+                        con.Close();
+                        Eliminar = true;
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Eliminar = false;
+
+            }
+            return Eliminar;
         }
 
     }

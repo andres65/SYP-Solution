@@ -15,20 +15,22 @@
             var correo = $(this).find("td:eq(4)").text();
             var telefono = $(this).find("td:eq(5)").text();
 
+            $("#fid").val(id.trim());
             $("#fidentificacion").val(iden.trim());
             $("#fname").val(nombre.trim());
             $("#fapellido").val(apellido.trim());
             $("#fDireccion").val(direccion.trim());
             $("#femail").val(correo.trim());
             $("#fphone").val(telefono.trim());
-            $("#fid").val(id.trim());     
+            $("#fid2").val(id.trim());
 
         });
     });
-   
+
 </script>
 
-<div class="modal fade" id="myModal" role="dialog">
+
+<div class="modal fade" id="ModalEditar" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -40,54 +42,55 @@
             <div class="modal-body">
                 <form class="form-horizontal" action="/Home/EditarPropietario" method="post">
                     <fieldset>
+                        
                         <input id="fid" name="id" type="text" hidden>
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-user"></i></span>
                             <div class="col-md-8">
-                                <input id="fidentificacion" name="idU" type="text" placeholder="Identificación" class="form-control">
+                                <input id="fidentificacion" name="idU" type="number" placeholder="Identificación" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-user"></i></span>
                             <div class="col-md-8">
-                                <input id="fname" name="nombre" type="text" placeholder="Nombre" class="form-control">
+                                <input id="fname" name="nombre" type="text" placeholder="Nombre" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-user"></i></span>
                             <div class="col-md-8">
-                                <input id="fapellido" name="apellido" type="text" placeholder="Apellido" class="form-control">
+                                <input id="fapellido" name="apellido" type="text" placeholder="Apellido" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-road"></i></span>
                             <div class="col-md-8">
-                                <input id="fDireccion" name="direccion" type="text" placeholder="Dirección" class="form-control">
+                                <input id="fDireccion" name="direccion" type="text" placeholder="Dirección" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-envelope"></i></span>
                             <div class="col-md-8">
-                                <input id="femail" name="email" type="text" placeholder="Correo" class="form-control">
+                                <input id="femail" name="email" type="email" placeholder="Correo" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-phone"></i></span>
                             <div class="col-md-8">
-                                <input id="fphone" name="telefono" type="text" placeholder="Telefono" class="form-control">
+                                <input id="fphone" name="telefono" type="number" placeholder="Telefono" class="form-control" required>
                             </div>
                         </div>
 
 
-
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Editar</button>
+                                <button type="button" class="btn btn-warning btn-lg" data-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </fieldset>
@@ -99,67 +102,96 @@
     </div>
 </div>
 
-<br />
-<button>@Html.ActionLink("Agregar Propietario", "Index", "CrearPropietario")</button>
+<!--Modal Eliminar-->
+<div class="modal fade" id="ModalEliminar" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Elimiar Propietario</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="/Home/EliminarPropietario" method="post">
+                    <fieldset>
+
+                        <h3>Desaea eliminar el Propietario con ID</h3>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-user"></i></span>
+                            <div class="col-md-8">
+                                <input id="fid2" name="id" type="number" placeholder="ID" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-danger btn-lg">Eliminar</button>
+                                <button type="button" class="btn btn-warning btn-lg" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!--End ModalEliminar-->
+
+<br /><br />
+<button type="button" class="btn btn-default btn-lg">@Html.ActionLink("Agregar Propietario", "Index", "CrearPropietario")</button>
+<br /><br />
 <div>
-    <table class="table">
-        <tr>
-            <th hidden>
-                id
-            </th>
-            <th>
-                Identificación
-            </th>
-            <th>
-                Nombre Propietario
-            </th>
-            <th>
-                Apellido
-            </th>
-            <th>
-                Correo
-            </th>
-            <th>
-                Telefono
-            </th>
-            <th>
-                Dirección
-            </th>
+    <h2>Lista Propietarios</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Identificación </th>
+                <th>Nombre Propietario</th>
+                <th>Apellido </th>
+                <th> Correo </th>
+                <th>Telefono </th>
+                <th> Dirección </th>
 
 
-            <th></th>
-        </tr>
-        @foreach (var item in Model )
-        {
-        <tr>
-            <td hidden>
-                @Html.DisplayFor(modelItem => item.intId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.strNumeeroIdentificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.strNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.strApellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.strCorreo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.strTelefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.strDireccion)
-            </td>
-            <td>
-                <button class="btn btn-default" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></button> |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.intId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strNumeeroIdentificacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strNombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strApellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strCorreo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strTelefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.strDireccion)
+                    </td>
+                    <td>
+                        <button class="btn btn-info" data-toggle="modal" data-target="#ModalEditar"><span class="glyphicon glyphicon-pencil"></span></button> |
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminar"><span class="glyphicon glyphicon-remove-sign"></span></button>
+                    </td>
+                </tr>
 
-        }
+            }
+        </tbody>
     </table>
 </div>

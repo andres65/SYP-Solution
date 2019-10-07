@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "index";
+}
+
+<h2>Agregar Vehiculo</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <form class="form-horizontal" action="/CrearVehiculo/Index" method="post">
+                    <fieldset>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-unchecked"></i></span>
+                            <div class="col-md-8">
+                                <label>Número de placa</label>
+                                <input id="fname" name="placa" type="text" placeholder="placa" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-th-list"></i></span>
+                            <div class="col-md-8">
+                                <label>Id Linea (1-6)</label>
+                                <input id="fname" name="idLinea" type="number" placeholder="1" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <div class="col-md-8">
+                                <label>Modelo</label>
+                                <input id="lname" name="modelo" type="number" placeholder="2019" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-cog"></i></span>
+                            <div class="col-md-8">
+                                <label>Número del Motor</label>
+                                <input id="lname" name="NumeroMotor" type="text" placeholder="JAC123" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-tint"></i></span>
+                            <div class="col-md-8">
+                                <label>Color</label>
+                                <input id="lname" name="color" type="text" placeholder="Azul-Rojo-Amarrillo" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-list"></i></span>
+                            <div class="col-md-8">
+                                <label>Id Clase (1-4)</label>
+                                <input id="fname" name="idClase" type="number" placeholder="1" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="glyphicon glyphicon-list"></i></span>
+                            <div class="col-md-8">
+                                <label>Id Tipo servicio (1-2)</label>
+                                <input id="fname" name="idTipoServicio" type="number" placeholder="1.PUBLICO - 2. PARTICULAR" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Crear</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
